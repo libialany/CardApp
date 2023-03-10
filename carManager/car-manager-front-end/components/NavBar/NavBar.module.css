@@ -1,0 +1,17 @@
+.navBar {
+  background-color: #0f0f0f;
+  margin-top: 0;
+  padding: 0;
+  color: #9f9f9f;
+  margin: 0 !important;
+}
+
+.navBar h1 {
+  margin: 0 auto;
+  padding: 1.67rem;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  background-color: #0f0f0f;
+  top: 0 !important;
+}

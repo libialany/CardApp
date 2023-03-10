@@ -1,0 +1,12 @@
+.hero {
+  background-image: url('../../images/carHeader.jpeg');
+  height:100vh;
+}
+.hero h3 {
+  color: #dd0909;
+  font-size: 5rem;
+  padding-top: 12rem;
+  margin-left: 5rem;
+  width:30%;
+  height:40%;
+}
