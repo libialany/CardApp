@@ -30,12 +30,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## test backend
 
-_get_ *get all cards*
+## Car
 
-http://localhost:5000/car/{id}
+_get_ *get all cars*
+
+http://localhost:5000/car/
 
 
-_put_ *update a card*
+_put_ *update a car*
 
 http://localhost:5000/car/77ec1a88-9884-4128-bdf4-6a20f59f5e95
 
@@ -62,18 +64,14 @@ http://localhost:5000/car
 ```
 
 
-_delete_ *delete cards*
+_delete_ *delete card*
 
 http://localhost:5000/car/{id}
 
-```
-onClick={() => {
-router.push("/edit/" + task.id);
-}}
-```
 
 
---------
+## User
+
 _put_  *asignar*
 
 http://localhost:5000/user/asignar
@@ -85,24 +83,16 @@ http://localhost:5000/user/asignar
 }
 ```
 
-result
+_post_  *create a user*
 
+http://localhost:5000/user
+
+```
 {
-  "nombre": "lenske",
-  "edad": 12,
-  "apellidoM": "parte",
-  "apellidoP": "kion",
-  "cardId": "250e39bf-40e2-49a3-8967-43b9de17e06e",
-  "uuid": "e8daab2d-a227-4e45-a12a-a071cb96f6bd"
-}s
-
-
-
----------
-
-GETBYID
-
-*http://localhost:5000/user/f3592cf8-d0a1-4f8b-8a6e-201b3a4a01e2*
-
-----------
-
+"nombre":"timmy",
+"edad":12,
+"apellidoM":"turney",
+"apellidoP":"kion",
+"cardId": ""
+}
+```
