@@ -1,10 +1,11 @@
 import Head from 'next/head';
-import Header from '../components/Header';
-import AllCars from '../components/AllCars';
-import Footer from '../components/Footer';
-import Button from '../components/Button';
-import { navigate } from '../utils/navigate';
-import { centerButton } from '../styles/styles';
+import Header from '../../components/Header';
+// import AllCars from '../../components/AllCars';
+import AllUser from '../../components/AllUsers'
+import Footer from '../../components/Footer';
+import Button from '../../components/Button';
+import { navigate } from '../../utils/navigate';
+import { centerButton } from '../../styles/styles';
 
 export default function Home({ cars }: any) {
   return (
@@ -22,13 +23,13 @@ export default function Home({ cars }: any) {
           param={{ link: '/car/create' }}
         />
       </div>
-      <AllCars car={cars} />
+      <AllUser car={cars} />
       <Footer />
     </div>
   );
 }
 export const getStaticProps = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/car`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/user`)
   const cars = await res.json();
   return {
     props: {

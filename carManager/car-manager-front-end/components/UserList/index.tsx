@@ -1,23 +1,22 @@
 import React from 'react';
-import { Car, carProps } from '../../types/Car';
+import { User, userProps } from '../../types/User';
 import CarItem from '../CarItem';
 import { useRouter } from 'next/router'
 import {updateCar} from '../../utils/updateCar'
 import {deleteCar} from '../../utils/deleteCar'
-import UpdatePage from '../../templates/updatePage';
 const CarsList = ({ car }: any) => {
   const router= useRouter();
   const onHoli = () => {
     console.log(car);
   };
-  const onDelete = (_card:Car) => {
+  const onDelete = (_card:User) => {
     console.log('recivi esto en borrar');
     deleteCar(_card)
   };
-  const onEdit = (_card:Car) => {
+  const onEdit = (_card:User) => {
     console.log('recivi esto en editar');
     const url = 'http://localhost:3000/car/update'
-    //router.push(`${url}/${_card.uuid}`)
+    router.push(`${url}/${_card.uuid}`)
     // console.log(_card.name)
     //updateCar(_card)
   };
@@ -27,21 +26,18 @@ const CarsList = ({ car }: any) => {
       <table>
         <thead>
           <tr>
-            <th scope="col">name</th>
-            <th scope="col">color</th>
-            <th scope="col">modelo</th>
-            <th scope="col">acciones</th>
+            <th scope="col">nombre</th>
+            <th scope="col">edad</th>
+            <th scope="col">asignacion</th>
           </tr>
         </thead>
         <tbody>
-          {car.map((c: Car, index: number) => (
+          {car.map((c: User, index: number) => (
             <tr key={index}>
-              <td>{c.name}</td>
-              <td>{c.model}</td>
-              <td>{c.color}</td>
+              <td>{c.nombre} {c.apellidoP} {c.apellidoM}</td>
+              <td>{c.edad}</td>
               <td>
-                <button onClick={()=>onDelete(c)}>eliminar</button>
-                <button onClick={()=>onEdit(c)}>editar</button>
+                <button onClick={onHoli}>asignacion</button>
               </td>
             </tr>
           ))}
@@ -50,9 +46,7 @@ const CarsList = ({ car }: any) => {
       {/* {car.map((c: Car) => (
         <CarItem car={c} key={c.uuid}></CarItem>
       ))} */}
-      <UpdatePage car={car} />
     </div>
-    
   );
 };
 

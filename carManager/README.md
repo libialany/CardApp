@@ -52,3 +52,46 @@ _delete_ *delete cards*
 
 http://localhost:5000/car/{id}
 
+```
+onClick={() => {
+router.push("/edit/" + task.id);
+}}
+```
+
+
+--------
+PUT
+
+*http://localhost:5000/user*
+
+```
+{
+"nombre":"lenske",
+"edad":12,
+"apellidoM":"parte",
+"apellidoP":"kion",
+"cardId":"250e39bf-40e2-49a3-8967-43b9de17e06e"
+}
+```
+
+result
+
+{
+  "nombre": "lenske",
+  "edad": 12,
+  "apellidoM": "parte",
+  "apellidoP": "kion",
+  "cardId": "250e39bf-40e2-49a3-8967-43b9de17e06e",
+  "uuid": "e8daab2d-a227-4e45-a12a-a071cb96f6bd"
+}s
+
+
+
+---------
+
+GETBYID
+
+*http://localhost:5000/user/f3592cf8-d0a1-4f8b-8a6e-201b3a4a01e2*
+
+----------
+
