@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import Header from '../components/Header';
-import AllCars from '../components/AllCars';
-import Footer from '../components/Footer';
-import Button from '../components/Button';
-import { navigate } from '../utils/navigate';
-import { centerButton } from '../styles/styles';
+import Header from '../../components/Header';
+import AllCars from '../../components/AllCars';
+import Footer from '../../components/Footer';
+import Button from '../../components/Button';
+import { navigate } from '../../utils/navigate';
+import { centerButton } from '../../styles/styles';
 
 export default function Home({ cars }: any) {
   return (

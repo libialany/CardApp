@@ -35,7 +35,7 @@ const CreatePage = () => {
             </label>
             <TextField id={'model'} name={model} onChange={setModel} />
           </div>
-          <div style={innerwrapperDiv as React.CSSProperties}>
+          {/* <div style={innerwrapperDiv as React.CSSProperties}>
             <label style={innerwrapperLabel} htmlFor="description">
               Description:
             </label>
@@ -44,7 +44,7 @@ const CreatePage = () => {
               name={description}
               onChange={setDescription}
             />
-          </div>
+          </div> */}
           <div style={innerwrapperDiv as React.CSSProperties}>
             <label style={innerwrapperLabel} htmlFor="color">
               Color:{'          '}
