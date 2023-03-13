@@ -1,5 +1,4 @@
-// import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import {  Entity,  JoinColumn,  OneToOne,  Column,  PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Car } from './Car';
 @Entity({ name: 'users' })
 export class User {
@@ -18,7 +17,6 @@ export class User {
   @Column({ default: '' })
   apellidoP: string;
 
-  @OneToOne(() => Car)
-  @JoinColumn()
-  car: Car;
+  @OneToMany(() => Car, (car) => car.user)
+  cars: Car[];
 }

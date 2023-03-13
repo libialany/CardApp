@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { User } from './User';
 @Entity({ name: 'cars' })
 export class Car {
   @PrimaryGeneratedColumn('uuid')
@@ -16,4 +16,7 @@ export class Car {
 
   @Column({ default: '' })
   description: string;
+
+  @ManyToOne(() => User, (user) => user.cars)
+  user: User;
 }

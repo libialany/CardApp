@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AssignCarToUserDTO, CreateUserDTO } from 'src/dto/user.dto';
-import { Car } from 'src/entity/Car';
+import { CreateUserDTO, UpdateUserDTO } from 'src/dto/user.dto';
 import { User } from 'src/entity/User';
 import { Repository } from 'typeorm';
 @Injectable()
@@ -9,8 +8,6 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-    @InjectRepository(Car)
-    private carsRepository: Repository<Car>,
   ) {}
 
   public async getAllUsers(): Promise<User[]> {
@@ -35,16 +32,18 @@ export class UserService {
     newUser.apellidoP = user.apellidoP;
     return this.usersRepository.save(newUser);
   }
-
-  public async assignCarToUser(reques:AssignCarToUserDTO) {
-    const myCar = await this.carsRepository.findOneBy({uuid:reques.uuidCar});
-    if (!myCar) throw new Error('Car not found');
-    const myUser = await this.usersRepository.findOneBy({uuid:reques.uuidUser});
-    if (!myUser) throw new Error('User not found');
-    const newUser = new User() 
-    const newCar  = new Car()
-    newCar.uuid =  reques.uuidCar
-    newUser.car = newCar
-    return this.usersRepository.update(reques.uuidUser,newUser);
+  public async putUserById(id: string, request: UpdateUserDTO) {
+    return this.usersRepository.update(id, request);
   }
+  // public async assignCarToUser(reques:AssignCarToUserDTO) {
+  //   const myCar = await this.carsRepository.findOneBy({uuid:reques.uuidCar});
+  //   if (!myCar) throw new Error('Car not found');
+  //   const myUser = await this.usersRepository.findOneBy({uuid:reques.uuidUser});
+  //   if (!myUser) throw new Error('User not found');
+  //   const newUser = new User()
+  //   const newCar  = new Car()
+  //   newCar.uuid =  reques.uuidCar
+  //   newUser.car = newCar
+  //   return this.usersRepository.update(reques.uuidUser,newUser);
+  // }
 }

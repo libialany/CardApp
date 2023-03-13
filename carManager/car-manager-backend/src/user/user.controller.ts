@@ -6,13 +6,11 @@ import {
   Param,
   Post,
   Put,
-  Query,
 } from '@nestjs/common';
 // import { CreateUserDTO, UpdateUserDTO } from 'src/dto/user.dto';
-import { CreateUserDTO, AssignCarToUserDTO } from 'src/dto/user.dto';
+import { CreateUserDTO, UpdateUserDTO } from 'src/dto/user.dto';
 import { User } from 'src/entity/User';
 import { UserService } from './user.service';
-
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
@@ -27,7 +25,7 @@ export class UserController {
     return this.userService.getUserById(uuid);
     // return this.userService.getUserById(uuid);
   }
-  @Post('create')
+  @Post()
   async postUser(@Body() request: CreateUserDTO) {
     return this.userService.postUser(request);
     // return this.userService.postUser(request);
@@ -37,10 +35,15 @@ export class UserController {
     return this.userService.deleteUserById(uuid);
     // return this.userService.deleteUserById(uuid);
   }
-  // 
-  @Put('asignar')
-  async updateUser(@Body() request: AssignCarToUserDTO ) {
-    return this.userService.assignCarToUser(request);
-    // return this.userService.putUserById(uuid, request);
+  @Put(':id')
+  async updateUser(@Param('id') uuid: string, @Body() request: UpdateUserDTO) {
+    // return ''//this.userService.assignCarToUser(request);
+    return this.userService.putUserById(uuid, request);
   }
+  //
+  // @Put('asignar')
+  // async updateUser(@Body() request: AssignCarToUserDTO ) {
+  //   return ''//this.userService.assignCarToUser(request);
+  //   // return this.userService.putUserById(uuid, request);
+  // }
 }

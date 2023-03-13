@@ -1,15 +1,28 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectRepository, InjectEntityManager } from '@nestjs/typeorm';
+import { CreateCarDTO } from 'src/dto/car.dto';
 import { Car } from 'src/entity/Car';
-import { Repository } from 'typeorm';
+import { User } from 'src/entity/User';
+import { EntityManager, Repository } from 'typeorm';
 
 @Injectable()
 export class CarService {
   constructor(
     @InjectRepository(Car)
     private carsRepository: Repository<Car>,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
+    @InjectEntityManager() private carManager: EntityManager,
   ) {}
-
+  public async getAllCarsOfUser() {
+    const result = await this.carManager
+      .getRepository(User)
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.cars', 'cars')
+      .getMany();
+    // console.log(result);
+    return result;
+  }
   public async getAllCars(): Promise<Car[]> {
     return this.carsRepository.find();
   }
@@ -24,8 +37,16 @@ export class CarService {
     await this.carsRepository.delete(uuid);
   }
 
-  public async postCar(car: Partial<Car>): Promise<Car> {
-    return this.carsRepository.save(car);
+  public async postCar(car: CreateCarDTO): Promise<Car> {
+    const user = await this.userRepository.findOneBy({ uuid: car.userUuid });
+    if (!user) throw new Error('User not found');
+    const newCar = new Car();
+    newCar.name = car.name;
+    newCar.model = car.model;
+    newCar.color = car.color;
+    newCar.description = car.description;
+    newCar.user = user;
+    return this.carsRepository.save(newCar);
   }
 
   public async putCarById(uuid: string, car: Partial<Car>) {
